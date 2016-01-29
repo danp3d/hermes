@@ -2,3 +2,15 @@ language: node_js
 node_js:
   - "0.11"
   - "0.10"
+  
+services:
+  - mysql
+  
+before_script:
+  - mysql -e 'create database sync1;'
+  - mysql -e 'create database sync2;'
+  - mysql -e 'create table `sync1`.`tbl1` (id int auto_increment not null primary key, data_1 varchar(30) not null, data_2 int, data_3 int, lastUpdated timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);'
+  - mysql -e 'create table `sync2`.`tbl2` (id int auto_increment not null primary key, dasData varchar(30) not null, dasData1 int, dasData2 int, lastUpdated timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);'
+  - mysql -e 'create table `sync1`.`lastSync` (id int auto_increment not null primary key, tableName varchar(100) not null unique, lastSync timestamp);'
+  - mysql -e 'create table `sync2`.`lastSync` (id int auto_increment not null primary key, tableName varchar(100) not null unique, lastSync timestamp);'
+  
