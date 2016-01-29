@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/danp3d/hermes.svg?branch=master)](https://travis-ci.org/danp3d/hermes)
 # Hermes
 
 Database synchronisation tool for MySQL
